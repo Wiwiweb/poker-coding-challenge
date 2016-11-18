@@ -1,29 +1,36 @@
 package main
 
 type Card struct {
-	value string
-	suit  string
+	Value CardValue
+	Suit  string
 }
 
-var valueOrder = []string{"A", "K", "Q", "J", "10", "9", "8", "7", "6", "5", "4", "3", "2"}
+// Having an enum-style type allows us to deal with Jacks and up
+// without having to translate them to ints,
+// which makes the code a bit clearer
+
+type CardValue int
+
+const (
+	TWO CardValue = iota
+	THREE
+	FOUR
+	FIVE
+	SIX
+	SEVEN
+	EIGHT
+	NINE
+	TEN
+	JACK
+	QUEEN
+	KING
+	ACE
+)
 
 func (c Card) Equals(otherCard Card) bool {
-	return c.value == otherCard.value
+	return c.Value == otherCard.Value
 }
 
 func (c Card) IsBetterThan(otherCard Card) bool {
-	if c.Equals(otherCard) {
-		return false
-	}
-	for _, value := range valueOrder {
-		if c.value == value {
-			return true
-		}
-		if otherCard.value == value {
-			return false
-		}
-	}
-	// We assume no invalid values, i.e. the value will be in the valueOrder slice
-	// So this shouldn't ever reach this point
-	return false
+	return c.Value > otherCard.Value
 }
