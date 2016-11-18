@@ -9,8 +9,8 @@ import (
 func TestIsBetterThan_True(t *testing.T) {
 	assert := test_assert.New(t)
 
-	card1 := Card{value: "10", suit: "H"}
-	card2 := Card{value: "4", suit: "H"}
+	card1 := Card{Value: TEN, Suit: "H"}
+	card2 := Card{Value: FOUR, Suit: "H"}
 
 	assert.True(card1.IsBetterThan(card2))
 }
@@ -18,8 +18,8 @@ func TestIsBetterThan_True(t *testing.T) {
 func TestIsBetterThan_False(t *testing.T) {
 	assert := test_assert.New(t)
 
-	card1 := Card{value: "J", suit: "H"}
-	card2 := Card{value: "K", suit: "H"}
+	card1 := Card{Value: JACK, Suit: "H"}
+	card2 := Card{Value: KING, Suit: "H"}
 
 	assert.False(card1.IsBetterThan(card2))
 }
