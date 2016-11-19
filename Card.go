@@ -34,3 +34,16 @@ func (c Card) Equals(otherCard Card) bool {
 func (c Card) IsBetterThan(otherCard Card) bool {
 	return c.Value > otherCard.Value
 }
+
+// sort.Interface methods to allow sorting card values with builtin sort functions
+type CardsByValue []CardValue
+
+func (c CardsByValue) Len() int {
+	return len(c)
+}
+func (c CardsByValue) Less(i, j int) bool {
+	return c[i] < c[j]
+}
+func (c CardsByValue) Swap(i, j int) {
+	c[i], c[j] = c[j], c[i]
+}
